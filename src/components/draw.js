@@ -1,9 +1,8 @@
 import React, {useRef, useState} from 'react';
 import {SketchField, Tools} from 'react-sketch'
 import {Alert, Button} from 'react-bootstrap'
-import { saveAs } from 'file-saver'
+//import { saveAs } from 'file-saver'
 import axios from 'axios';
-import ReactDOM from 'react-dom'
 
 const styles={
     draw: {
@@ -39,7 +38,7 @@ const Draw = () => {
         const fd = new FormData()
         fd.append('image', c)
         
-        axios.post('http://127.0.0.1:8000/api/digits/', fd, {headers:headers})
+        axios.post('mnist-env.eba-dfnrsz2b.us-west-2.elasticbeanstalk.com/api/digits/', fd, {headers:headers})
         .then(res=>{
             console.log(res.data)
             setSend(true)
@@ -50,7 +49,7 @@ const Draw = () => {
     }
 
     const getImageResult = (id) => {
-        axios.get('http://127.0.0.1:8000/api/digits/'+id+'/')
+        axios.get('mnist-env.eba-dfnrsz2b.us-west-2.elasticbeanstalk.com/api/digits/'+id+'/')
         .then(res=>{
             setResult(res.data.result)
         })
